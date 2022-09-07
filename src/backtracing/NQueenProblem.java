@@ -18,13 +18,13 @@ public class NQueenProblem {
 
         int[] nums = { 12, -13, -5, 25, -20, 30, 10};
         int[] coins = {2,3,5,6};
-        int [] coins2 = {1,2,3};
+        int [] coins2 = {1,2};
         // System.out.println(findMax(nums,0,nums.length-1));
         //System.out.println("The maximum sum of the subarray is " +
         //        findMaximumSum(nums));
        // OneDQueenProblemPermutation(inputBoard[0],3,0,"");
       //  OneDQueenProblemCombination(inputBoard[0],2,0,"",-1);
-        //coinChange(coins,10,0,0,"");
+        coinChange(coins2,100,0,0,"");
        // OneDQueenProblemWRTBox(new boolean[4],2,0,"",0);
         //coinChangeWRTCoin(coins,10,"",0);
         //coinChangeWRTCoin(coins2,4,"",0);
