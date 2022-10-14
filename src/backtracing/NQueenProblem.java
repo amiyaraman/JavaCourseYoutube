@@ -1,6 +1,6 @@
 package backtracing;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class NQueenProblem {
     static int  count =0;
@@ -31,6 +31,8 @@ public class NQueenProblem {
         //TwoDQueenProblemCombinationKill(input2,3,0,"",0,0);
         //nKnightProblem(input2,0,0,3,0,"");
         blockedMaze(mazeInput,0,0,inputBoard,3,3,"");
+        int[] arr = {4,4,4 ,7,8,3,8};
+        System.out.println(Arrays.toString(duplicate(5, arr)));
 
     }
     public static void coinChange(int[] coins , int maxSum , int currSum , int lastCoinUsed,String ans ){
@@ -334,6 +336,30 @@ public class NQueenProblem {
         blockedMaze(maze,row,col-1,traced,eRow,eCol,ans+"L");
         blockedMaze(maze,row,col+1,traced,eRow,eCol,ans+"R");
         traced[row][col]=false;
+    }
+    public static int[] duplicate(int input1, int[] input2){
+        ArrayList<Integer> arr = new ArrayList<>();
+        HashMap<Integer,Integer> h = new HashMap<>();
+        for (int n : input2){
+            if(h.containsKey(n)){
+                h.put(n,h.get(n)+1);
+            }else{
+                h.put(n,1);
+            }
+        }
+        Set<Map.Entry<Integer,Integer>> entries = h.entrySet();
+        for (Map.Entry<Integer, Integer> entry :
+                entries) {
+            if (entry.getValue() > 1){
+                arr.add(entry.getKey());
+            }
+        }
+
+        int[] ans = new int[arr.size()];
+        for(int i = 0 ; i<arr.size();i++){
+            ans[i]=arr.get(i);
+        }
+        return ans ;
     }
 
 

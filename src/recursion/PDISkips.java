@@ -10,7 +10,8 @@ public class PDISkips {
         //etBoardPath(10,"");
         //System.out.println(getMazePath(0,0,2,2));
         //printMazePath(0,0,2,2,"");
-        System.out.println(getMazePathDiag(0,0,2,2).size());
+       // System.out.println(getMazePathDiag(0,0,2,2).size());
+        printSubSeq("","abc");
 
     }
 //    static void printDISkips(int n){
