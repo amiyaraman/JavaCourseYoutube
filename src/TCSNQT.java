@@ -31,7 +31,8 @@ class TCSNQT {
        // quickSort(arr3, 0, arr3.length-1);
       //  System.out.println("Sorted array: ");
     //    printArray(arr3, arr3.length);
-        System.out.println(ans(3,2));
+       // System.out.println(ans(3,2));
+
 
 
     }

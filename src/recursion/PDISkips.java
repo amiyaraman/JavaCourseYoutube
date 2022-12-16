@@ -11,7 +11,8 @@ public class PDISkips {
         //System.out.println(getMazePath(0,0,2,2));
         //printMazePath(0,0,2,2,"");
        // System.out.println(getMazePathDiag(0,0,2,2).size());
-        printSubSeq("","abc");
+     //   printSubSeq("","abc");
+        System.out.println(fab(45));
 
     }
 //    static void printDISkips(int n){
@@ -253,7 +254,6 @@ public class PDISkips {
 
         printMazePath(cr+1,cc,er,ec,res+"v");
 
-        return ;
     }
     public static int getMazePathCount(int cr , int cc , int er , int ec  ){
         if(cr==er&&cc==ec){
