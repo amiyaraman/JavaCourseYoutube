@@ -1,6 +1,5 @@
 package DynamicPrograming;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,7 +25,11 @@ public class DPDemo {
 //        int[] pr = {1,4,5,7};
 //        System.out.println(knapsac(wt,pr,7));
         int[] mixture = {40,60,20,50} ;
-        System.out.println(mixture(mixture));
+        //System.out.println(mixture(mixture));
+        String s ="";
+        // System.out.println(numBinaryTrees(7));
+        System.out.println(minCut("fiefhgdcdcgfeibggchibffahiededbbegegdfibdbfdadfbdbceaadeceeefiheibahgececggaehbdcgebaigfacifhdbecbebfhiefchaaheiichgdbheacfbhfiaffaecicbegdgeiaiccghggdfggbebdaefcagihbdhhigdgbghbahhhdagbdaefeccfiaifffcfehfcdiiieibadcedibbedgfegibefagfccahfcbegdfdhhdgfhgbchiaieehdgdabhidhfeecgfiibediiafacagigbhchcdhbaigdcedggehhgdhedaebchcafcdehcffdiagcafcgiidhdhedgaaegdchibhdaegdfdaiiidcihifbfidechicighbcbgibadbabieaafgeagfhebfaheaeeibagdfhadifafghbfihehgcgggffgbfccgafigieadfehieafaehaggeeaaaehggffccddchibegfhdfafhadgeieggiigacbfgcagigbhbhefcadafhafdiegahbhccidbeeagcgebehheebfaechceefdiafgeddhdfcadfdafbhiifigcbddahbabbeedidhaieagheihhgffbfbiacgdaifbedaegbhigghfeiahcdieghhdabdggfcgbafgibiifdeefcbegcfcdihaeacihgdchihdadifeifdgecbchgdgdcifedacfddhhbcagaicbebbiadgbddcbagbafeadhddaeebdgdebafabghcabdhdgieiahggddigefddccfccibifgbfcdccghgceigdfdbghdihechfabhbacifgbiiiihcgifhdbhfcaiefhccibebcahidachfabicbdabibiachahggffiibbgchbidfbbhfcicfafgcagaaadbacddfiigdiiffhbbehaaacidggfbhgeaghigihggfcdcidbfccahhgaffiibbhidhdacacdfebedbiacaidaachegffaiiegeabfdgdcgdacfcfhdcbfiaaifgfaciacfghagceaaebhhibbieehhcbiggabefbeigcbhbcidbfhfcgdddgdffghidbbbfbdhcgabaagddcebaechbbiegeiggbabdhgghciheabdibefdfghbfbfebidhicdhbeghebeddgfdfhefebiiebdchifbcbahaddhbfafbbcebiigadhgcfbebgbebhfddgdeehhgdegaeedfadegfeihcgeefbbagbbacbgggciehdhiggcgaaicceeaefgcehfhfdciaghcbbgdihbhecfbgffefhgiefgeiggcebgaacefidghdfdhiabgibchdicdehahbibeddegfciaeaffgbefbbeihbafbagagedgbdadfdggfeaebaidchgdbcifhahgfdcehbahhdggcdggceiabhhafghegfdiegbcadgaecdcdddfhicabdfhbdiiceiegiedecdifhbhhfhgdbhibbdgafhgdcheefdhifgddchadbdggiidhbhegbdfdidhhfbehibiaacdfbiagcbheabaaebfeaeafbgigiefeaeheabifgcfibiddadicheahgbfhbhddaheghddceedigddhchecaghdegigbegcbfgbggdgbbigegffhcfcbbebdchffhddbfhhfgegggibhafiebcfgeaeehgdgbccbfghagfdbdfcbcigbigaccecfehcffahiafgabfcaefbghccieehhhiighcfeabffggfchfdgcfhadgidabdceediefdccceidcfbfiiaidechhbhdccccaigeegcaicabbifigcghcefaafaefd"));
+       // s.length()
     }
     public static int fibDp(int n , int[] storage){
         if(n<=1){
@@ -429,6 +432,141 @@ public class DPDemo {
             }
         }
         return low;
+    }
+    public static int cutRod(int price[], int n) {
+        int[] ansArray = new int[n+1];
+        ansArray[0]= 0;
+        ansArray[1]= price[0];
+
+        for(int i =1 ;i<n;i++){
+            int left = 1;
+            int right = i;
+            int max = price[i];
+            while(left<=right){
+                int lp = ansArray[left];
+                int rp = ansArray[right];
+                int sum = lp+rp;
+                if(max<sum){
+                    max=sum;
+                }
+                left++;
+                right--;
+            }
+            ansArray[i+1]=max;
+        }
+        return ansArray[n];
+    }
+    public static boolean isMatch(String s, String p) {
+       boolean[][] strg = new boolean[s.length()+1][p.length()+1];
+       strg[s.length()][p.length()]=true;
+       for(int i = s.length();i>=0;i--){
+           for(int j = p.length()-1;j>=0;j--){
+               if(i==s.length()){
+                   if(p.charAt(j)=='*'){
+                       strg[i][j]=strg[i][j + 1];
+                   }
+                   else{
+                       strg[i][j]=false;
+                   }
+               }else{
+                   char chs = s.charAt(i);
+                   char chp = p.charAt(j);
+                   boolean ans = false;
+                   if((chs==chp)||chp=='?'){
+                       ans = strg[i+1][j+1];
+                   }else if(chp=='*'){
+                       boolean blankspace= strg[i][j+1];
+                       boolean multicharactor = strg[i+1][j];
+                      ans=blankspace||multicharactor;
+                   }
+                   strg[i][j]=ans;
+               }
+           }
+       }
+       return strg[0][0];
+
+    }
+    public static int numBinaryTrees(int n) {
+        int[] strg = new int[n+1];
+        strg[0]= 1;
+        strg[1]=1;
+        for(int i=2 ; i<=n;i++){
+            int total = 0;
+            for(int j =1 ; j<=i;j++  ){
+                int l = j-1;
+                int r = i-j;
+                int lint =strg[l];
+                int rint= strg[r];
+                total+=strg[l]*strg[r];
+
+            }
+            strg[i]=total;
+        }
+        return strg[n];
+
+    }
+    public static int minCut(String s) {
+        int[][] arr = new int[s.length()][s.length()];
+        boolean[][] isStringPalindrome=isisPalindromeList(s);
+        for(int slide=1;slide<s.length();slide++){
+            for(int si = 0;si<s.length()-slide;si++){
+                int ei = si+slide;
+                if(isStringPalindrome[si][ei]){
+                    arr[si][ei]=0;
+                }else{
+                    int min = Integer.MAX_VALUE;
+                    for(int k = si ; k<ei;k++){
+                        int lp = arr[si][k];
+                        int rp = arr[k+1][ei];
+
+                        int sw= lp + rp + 1;
+                        if(min>sw){
+                            min = sw;
+                        }
+
+                    }
+                    arr[si][ei]= min;
+
+                }
+
+            }
+        }
+        return arr[0][s.length()-1];
+
+
+    }
+
+    private static boolean isPalindrome(int si, int ei, String s) {
+        while(si<ei){
+            if(s.charAt(si)==s.charAt(ei)){
+                si++;
+                ei--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+    private static boolean[][] isisPalindromeList(String s){
+        boolean[][] isStringPalindrome=new boolean[s.length()][s.length()];
+        for(int slide = 0 ; slide<s.length();slide++){
+            for(int i=0;i<s.length()-slide;i++){
+                int j = i+slide;
+                if(i==j){
+                    isStringPalindrome[i][j]=true;
+                }
+                else{
+                    if(s.charAt(i)==s.charAt(j)){
+                        isStringPalindrome[i][j]=isStringPalindrome[i+1][j-1];
+                    }
+                    else{
+                        isStringPalindrome[i][j]=false;
+                    }
+                }
+            }
+        }
+       return isStringPalindrome;
+
     }
 
 }

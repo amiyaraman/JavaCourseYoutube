@@ -64,6 +64,10 @@ class PushEfficientQueue{
 
 
     }
+    public boolean empty() {
+        return primary.isEmpty()&&secondary.isEmpty();
+
+    }
     private void reverserStack(Stack<Integer> primary,Stack<Integer> secondary , int index ){
         if (primary.isEmpty()){
             return;
